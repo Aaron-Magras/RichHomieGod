@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-const token = 'NzA0OTIwNjgyNzIyNDkyNDI4.XqkLtw.mgwE8gAHxKFu7YAAgL4oRBPF3Eo';
+const token = 'lmao';
 
 const { MessageEmbed, MessageAttachment } = require('discord.js');
 
@@ -28,7 +28,7 @@ bot.on('message', message => {
             const Embed = new Discord.MessageEmbed()
             .setColor(0xFFC300)
             .setTitle("Create a Poll")
-            .setDescription("Multi-reaction poll type: !poll {title} [option 1] [option 2] [option 3] ...");
+            .setDescription("Multi-reaction poll type: !poll {title} [option 1] [option 2] [option 3] ... \n ***NOTE*** I'm ass at programming so the options cannot contain blank spaces i.e. The Lighthouse < Lighthouse");
 
             // Lacks args - Send Embed
             if(!args[1]){
@@ -38,7 +38,7 @@ bot.on('message', message => {
 
             let pollOpts = args.slice(1).join(" ");
             let pollTitle = args[1].slice(1, args[1].length - 1);
-            // Logic - arg[1] is title, then for every arg after title, send a message with its name + emoji, then send all reaction emojis
+            // Getting around options w/ spaces?? args[1], if contains '[' then scan each charAt, if we haven't found ']' but we find a ' ', join!
             message.channel.send(pollTitle);
             message.channel.send(pollOpts).then(messageReaction => {
                 messageReaction.react("👺");
