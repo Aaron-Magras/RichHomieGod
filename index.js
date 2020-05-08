@@ -1,10 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
-
-const token = 'lmao';
-
 const { MessageEmbed, MessageAttachment } = require('discord.js');
-
 const PREFIX = "!";
 
 bot.on('ready', () => {
@@ -21,18 +17,25 @@ bot.on('message', message => {
     switch(args[0]) {
         
         case 'help':
-            message.channel.send('GOD GIVEN ASSISTANCE')
+            
+            const helpEmbed = new Discord.MessageEmbed()
+            .setColor(0xFFC300)
+            .setTitle("Rich Homie God - HELP")
+            .setDescription("!poll - Simple Reaction Poll");
+            message.reply(helpEmbed);
+
         break;
 
         case 'poll':
-            const Embed = new Discord.MessageEmbed()
+            
+            const pollEmbed = new Discord.MessageEmbed()
             .setColor(0xFFC300)
             .setTitle("Create a Poll")
-            .setDescription("Multi-reaction poll type: !poll {title} [option 1] [option 2] [option 3] ... \n ***NOTE*** Supports up to 8 options");
+            .setDescription("Multi-reaction poll type: !poll {title} [option 1] [option 2] [option 3] ... \n ***NOTE*** Supports up to 8 options; PLEASE ADHERE TO FORMAT");
 
             // Lacks args - Send Embed
             if(!args[1]){
-                message.channel.send(Embed);
+                message.channel.send(pollEmbed);
                 break;
             }
 
@@ -98,12 +101,14 @@ bot.on('message', message => {
         
         // how to send attachments
         case 'meme':
+            
             const attachment = new MessageAttachment('./memes/tuesdayagain.jpg', 'tuesdayagain.png');
             message.channel.send(message.author, attachment);
+            
         break;
         
     }
 
 })
 
-bot.login(token);
+bot.login(process.env.BOT_TOKEN);
