@@ -4,10 +4,9 @@ const { MessageEmbed, MessageAttachment } = require('discord.js');
 const PREFIX = "!";
 
 bot.on('ready', () => {
-
-    console.log('ONLINE');
-
-})
+    (async () => {/* ... */})()
+      .catch(console.log);
+  });
 
 bot.on('message', message => {
 
