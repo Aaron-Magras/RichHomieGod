@@ -38,7 +38,7 @@ bot.on('message', message => {
                 break;
             }
 
-            if(!args[1].includes("[") {
+            if(!args[1].includes("[")) {
                 message.channel.send(pollEmbed);
                 break;
             }
