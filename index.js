@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const { MessageEmbed, MessageAttachment } = require('discord.js');
+const cron = require("node-cron");
 const PREFIX = "!";
 
 bot.on('ready', () => {
@@ -103,14 +104,58 @@ bot.on('message', message => {
 
         break;
         
-        // how to send attachments
-        case 'meme':
-            
-            const attachment = new MessageAttachment('./memes/tuesdayagain.jpg', 'tuesdayagain.png');
-            message.channel.send(message.author, attachment);
-            
+    }
+
+});
+
+/*  Daily Meme Cron Job
+*   Everyday @ 11am post the meme to personal Discord server's Meme Channel (Only works for my server)
+*   All memes are stored in a folder (memes) uploaded to the github
+*   Wasn't sure if channel ID has any privacy risks so I made it a config variable on the Heroku server just to be safe
+*/
+cron.schedule("30 14 * * *", function(){
+    console.log("Daily Meme running...");
+    var d = new Date();
+    var day = d.getDate();
+    var channelID = process.env.MEME_ID;
+    const attachment = new MessageAttachment();
+
+    switch(day) {
+        
+        case '1':
+    
+            attachment = new MessageAttachment('./memes/Monday.mp4');
+            bot.channels.cache.get(channelID).send('Me? Gongaga. Monday', attachment);
+
+        break;
+
+        case '2':
+
+            attachment = new MessageAttachment('./memes/Tuesday.jpg');
+            bot.channels.cache.get(channelID).send(attachment);
+
         break;
         
+        case '3':
+
+            attachment = new MessageAttachment('./memes/Wednesday.mp4');
+            bot.channels.cache.get(channelID).send('Sup', attachment);
+
+        break;
+        
+        case '4':
+
+            attachment = new MessageAttachment('./memes/Thursday.mp4');
+            bot.channels.cache.get(channelID).send('Happy Out of Touch Thursday Everybody!', attachment);
+
+        break;
+        
+        case '5':
+
+            attachment = new MessageAttachment('./memes/Friday.mp4');
+            bot.channels.cache.get(channelID).send('Imagine working 5 days a week.', attachment);
+
+        break;
     }
 
 });
