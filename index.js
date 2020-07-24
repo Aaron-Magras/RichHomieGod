@@ -113,7 +113,7 @@ bot.on('message', message => {
 *   All memes are stored in a folder (memes) uploaded to the github
 *   Wasn't sure if channel ID has any privacy risks so I made it a config variable on the Heroku server just to be safe
 */
-cron.schedule("30 14 * * *", function(){
+cron.schedule("35 14 * * *", function(){
     console.log("Daily Meme running...");
     var d = new Date();
     var day = d.getDate();
