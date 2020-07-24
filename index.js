@@ -113,51 +113,51 @@ bot.on('message', message => {
 *   All memes are stored in a folder (memes) uploaded to the github
 *   Wasn't sure if channel ID has any privacy risks so I made it a config variable on the Heroku server just to be safe
 */
-cron.schedule("35 14 * * *", function(){
-    console.log("Daily Meme running...");
-    var d = new Date();
-    var day = d.getDate();
-    var channelID = process.env.MEME_ID;
-    const attachment = new MessageAttachment();
+// cron.schedule("35 14 * * *", function(){
+//     console.log("Daily Meme running...");
+//     var d = new Date();
+//     var day = d.getDate();
+//     var channelID = process.env.MEME_ID;
+//     const attachment = new MessageAttachment();
 
-    switch(day) {
+//     switch(day) {
         
-        case '1':
+//         case '1':
     
-            attachment = new MessageAttachment('./memes/Monday.mp4');
-            bot.channels.cache.get(channelID).send('Me? Gongaga. Monday', attachment);
+//             attachment = new MessageAttachment('./memes/Monday.mp4');
+//             bot.channels.cache.get(channelID).send('Me? Gongaga. Monday', attachment);
 
-        break;
+//         break;
 
-        case '2':
+//         case '2':
 
-            attachment = new MessageAttachment('./memes/Tuesday.jpg');
-            bot.channels.cache.get(channelID).send(attachment);
+//             attachment = new MessageAttachment('./memes/Tuesday.jpg');
+//             bot.channels.cache.get(channelID).send(attachment);
 
-        break;
+//         break;
         
-        case '3':
+//         case '3':
 
-            attachment = new MessageAttachment('./memes/Wednesday.mp4');
-            bot.channels.cache.get(channelID).send('Sup', attachment);
+//             attachment = new MessageAttachment('./memes/Wednesday.mp4');
+//             bot.channels.cache.get(channelID).send('Sup', attachment);
 
-        break;
+//         break;
         
-        case '4':
+//         case '4':
 
-            attachment = new MessageAttachment('./memes/Thursday.mp4');
-            bot.channels.cache.get(channelID).send('Happy Out of Touch Thursday Everybody!', attachment);
+//             attachment = new MessageAttachment('./memes/Thursday.mp4');
+//             bot.channels.cache.get(channelID).send('Happy Out of Touch Thursday Everybody!', attachment);
 
-        break;
+//         break;
         
-        case '5':
+//         case '5':
 
-            attachment = new MessageAttachment('./memes/Friday.mp4');
-            bot.channels.cache.get(channelID).send('Imagine working 5 days a week.', attachment);
+//             attachment = new MessageAttachment('./memes/Friday.mp4');
+//             bot.channels.cache.get(channelID).send('Imagine working 5 days a week.', attachment);
 
-        break;
-    }
+//         break;
+//     }
 
-});
+// });
 
 bot.login(process.env.BOT_TOKEN);
