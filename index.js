@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const { MessageEmbed, MessageAttachment } = require('discord.js');
-const cron = require("node-cron");
+// const cron = require("node-cron");
 const PREFIX = "!";
 
 bot.on('ready', () => {
