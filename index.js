@@ -1,7 +1,6 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 const { MessageEmbed, MessageAttachment } = require('discord.js');
-// const cron = require("node-cron");
 const PREFIX = "!";
 
 bot.on('ready', () => {
@@ -98,61 +97,30 @@ bot.on('message', message => {
             }
 
         break;
+
+        case 'secretsanta':
+            const santaEmbed = new Discord.MessageEmbed()
+            .setColor(0xFFC300)
+            .setTitle("Secret Santa!")
+            .setDescription("Participate in the exchanging of gifts between Rich Homies. !secretsanta Y to join ");
+
+            // Lacks args - Send Embed
+            if(!args[1]){
+                message.channel.send(santaEmbed);
+                break;
+            }
         
+            message.author.send("Thanks for joining the Rich Homies Secret Santa Tradition. Expect to see your match messaged here once the registration closes!")
+
+            /*
+                Notes; I will announce registration and keep it open for several weeks. The bot will continuously keep a list of all the participants (with duplicate restrictions)
+                Once registration ends, I will call a master secret santa command that will pair all participants and private message them accordingly. The secret-santa channel will 
+                also have a pinned spreadsheet for general info on all participants (shirt sizes, interests, etc). 
+            */
+        
+        break;
     }
 
 });
-
-/*  Daily Meme Cron Job
-*   Everyday @ 11am post the meme to personal Discord server's Meme Channel (Only works for my server)
-*   All memes are stored in a folder (memes) uploaded to the github
-*   Wasn't sure if channel ID has any privacy risks so I made it a config variable on the Heroku server just to be safe
-*/
-// cron.schedule("35 14 * * *", function(){
-//     console.log("Daily Meme running...");
-//     var d = new Date();
-//     var day = d.getDate();
-//     var channelID = process.env.MEME_ID;
-//     const attachment = new MessageAttachment();
-
-//     switch(day) {
-        
-//         case '1':
-    
-//             attachment = new MessageAttachment('./memes/Monday.mp4');
-//             bot.channels.cache.get(channelID).send('Me? Gongaga. Monday', attachment);
-
-//         break;
-
-//         case '2':
-
-//             attachment = new MessageAttachment('./memes/Tuesday.jpg');
-//             bot.channels.cache.get(channelID).send(attachment);
-
-//         break;
-        
-//         case '3':
-
-//             attachment = new MessageAttachment('./memes/Wednesday.mp4');
-//             bot.channels.cache.get(channelID).send('Sup', attachment);
-
-//         break;
-        
-//         case '4':
-
-//             attachment = new MessageAttachment('./memes/Thursday.mp4');
-//             bot.channels.cache.get(channelID).send('Happy Out of Touch Thursday Everybody!', attachment);
-
-//         break;
-        
-//         case '5':
-
-//             attachment = new MessageAttachment('./memes/Friday.mp4');
-//             bot.channels.cache.get(channelID).send('Imagine working 5 days a week.', attachment);
-
-//         break;
-//     }
-
-// });
 
 bot.login(process.env.BOT_TOKEN);
